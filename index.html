@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A Little Something For My Friend 🖤</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=UnifrakturCook:wght@700&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root{
+  --bg:#08090d;
+  --panel:rgba(255,255,255,.065);
+  --panel2:rgba(255,255,255,.035);
+  --line:rgba(255,255,255,.12);
+  --text:#fff;
+  --muted:#a9acb8;
+  --pink:#ff78aa;
+  --purple:#9d7cff;
+  --cyan:#72e8ff;
+  --shadow:0 30px 100px rgba(0,0,0,.5);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  width:100%;height:100%;height:100dvh;overflow:hidden;
+  background:var(--bg);color:var(--text);
+  font-family:"DM Sans",sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+body{
+  position:relative;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(255,120,170,.14),transparent 28%),
+    radial-gradient(circle at 85% 80%,rgba(114,232,255,.10),transparent 30%),
+    #08090d;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+#fx{position:fixed;inset:0;pointer-events:none;z-index:1}
+.fly{
+  position:absolute;width:3px;height:3px;border-radius:50%;
+  background:var(--pink);box-shadow:0 0 14px var(--pink);
+  animation:floatUp linear infinite;opacity:.5;
+}
+@keyframes floatUp{
+  from{transform:translateY(110vh) scale(.5);opacity:0}
+  20%{opacity:.65}80%{opacity:.45}
+  to{transform:translateY(-10vh) translateX(50px) scale(1.2);opacity:0}
+}
+
+#prog{
+  position:fixed;top:0;left:0;height:3px;width:0;z-index:100;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--cyan));
+  box-shadow:0 0 16px rgba(255,120,170,.5);
+}
+
+#tag{
+  position:fixed;top:22px;left:24px;z-index:60;
+  font-size:12px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:#d9dbe4;
+}
+#tag:before{
+  content:"●";color:var(--pink);margin-right:8px;
+  text-shadow:0 0 12px var(--pink);
+}
+
+#music{
+  position:fixed;top:16px;right:18px;z-index:60;
+  display:flex;gap:8px;align-items:center;
+}
+#music button,#music label{
+  border:1px solid var(--line);
+  background:rgba(10,11,17,.65);
+  backdrop-filter:blur(20px);
+  color:#fff;border-radius:100px;
+  padding:10px 15px;font:500 13px "DM Sans",sans-serif;
+}
+#music label{cursor:pointer;padding:10px 12px}
+
+.scene{
+  position:absolute;inset:0;z-index:10;
+  display:flex;align-items:center;justify-content:center;
+  padding:70px 25px 105px;
+  overflow:hidden;
+  opacity:0;visibility:hidden;
+  transform:scale(.97) translateY(18px);
+  transition:opacity .7s ease,transform .9s cubic-bezier(.2,.8,.2,1),visibility 0s .7s;
+}
+.scene.on{
+  opacity:1;visibility:visible;transform:none;
+  transition-delay:0s;
+}
+
+.box{width:min(900px,92vw);text-align:center}
+.hand{
+  font:600 clamp(12px,2vw,15px) "DM Sans",sans-serif;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--pink);margin-bottom:18px;
+}
+.big{
+  font:500 clamp(42px,8vw,92px)/1.02 "Playfair Display",serif;
+  letter-spacing:-.045em;
+}
+
+/* extra font styles */
+.font-gothic{font-family:"UnifrakturCook",cursive!important;letter-spacing:.02em}
+.font-cinzel{font-family:"Cinzel",serif!important;letter-spacing:.08em}
+.font-elegant{font-family:"Cormorant Garamond",serif!important}
+.font-modern{font-family:"DM Sans",sans-serif!important}
+.gothic-accent{
+  font-family:"UnifrakturCook",cursive;
+  font-size:clamp(28px,5vw,56px);
+  line-height:1.05;
+  letter-spacing:.02em;
+}
+.mid{
+  margin:25px auto 0;
+  max-width:680px;
+  color:var(--muted);
+  font:400 clamp(17px,3vw,25px)/1.55 "DM Sans",sans-serif;
+}
+.quote{
+  max-width:780px;margin:auto;
+  font:italic 500 clamp(25px,5vw,48px)/1.25 "Playfair Display",serif;
+}
+.qa{
+  margin-top:24px;color:var(--pink);
+  font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+}
+
+/* opening card */
+.letter{
+  position:relative;
+  width:min(330px,72vw);
+  aspect-ratio:1.25;
+  margin:0 auto 34px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.025)),
+    radial-gradient(circle at 25% 20%,rgba(255,120,170,.28),transparent 35%);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(25px);
+  animation:cardFloat 5s ease-in-out infinite;
+}
+.letter:before{
+  content:"";
+  position:absolute;inset:16px;border-radius:19px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.letter:after{
+  content:"FOR YOU";
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  font-size:12px;letter-spacing:.3em;font-weight:700;
+  color:#eee;
+}
+.seal{
+  position:absolute;right:22px;top:22px;
+  width:48px;height:48px;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--pink),#ff4f91);
+  box-shadow:0 0 35px rgba(255,120,170,.35);
+  font-size:20px;
+}
+@keyframes cardFloat{50%{transform:translateY(-10px) rotate(1deg)}}
+
+/* modern photo card */
+.pl{width:min(430px,88vw);text-align:left}
+.polaroid{
+  position:relative;width:100%;
+  padding:10px;
+  background:rgba(255,255,255,.055);
+  border:1px solid var(--line);
+  border-radius:26px;
+  box-shadow:var(--shadow);
+  transform:rotate(var(--r,-2deg));
+  animation:photoFloat 6s ease-in-out infinite;
+  backdrop-filter:blur(20px);
+  cursor:pointer;
+}
+@keyframes photoFloat{
+  50%{transform:rotate(calc(var(--r,-2deg)*-.35)) translateY(-7px)}
+}
+.photo{
+  aspect-ratio:4/3;
+  position:relative;overflow:hidden;
+  border-radius:19px;
+  background:linear-gradient(135deg,#2b1d32,#151821);
+  display:grid;place-items:center;
+}
+.photo:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.42));
+  pointer-events:none;
+}
+.photo img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;transition:transform .7s ease;
+}
+.polaroid:hover .photo img{transform:scale(1.06)}
+.photo span{
+  position:relative;z-index:2;
+  color:#ddd;font-size:15px;text-align:center;
+}
+.cap{
+  padding:15px 8px 7px;
+  color:#fff;font-size:15px;font-weight:600;
+}
+.sub{
+  margin:23px 8px 0;
+  color:var(--muted);
+  font-size:15px;line-height:1.6;
+}
+
+/* pulse scene */
+.pulse{
+  position:absolute;left:50%;top:50%;
+  width:280px;height:280px;margin:-140px;
+  border:1px solid rgba(255,120,170,.5);
+  border-radius:50%;
+  animation:pulse 2.4s ease-out infinite;
+  opacity:0;
+}
+.pulse:nth-child(2){animation-delay:.8s}
+@keyframes pulse{
+  from{transform:scale(.3);opacity:.6}
+  to{transform:scale(2);opacity:0}
+}
+
+/* memory wall */
+.wall{
+  width:min(820px,92vw);
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:15px;margin:20px auto 0;
+}
+.wall .polaroid{
+  width:100%;padding:7px;
+  animation:none;
+  transform:rotate(var(--r,-1deg));
+}
+.wall .photo{aspect-ratio:1.15}
+.wall .cap{font-size:12px;padding:10px 5px 5px}
+
+.final{
+  font:500 clamp(50px,11vw,120px)/.94 "Playfair Display",serif;
+  letter-spacing:-.05em;
+}
+.final i{
+  font-style:italic;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* bottom navigation */
+.nav{
+  position:fixed;bottom:25px;left:0;right:0;
+  display:flex;justify-content:center;gap:10px;
+  z-index:70;
+}
+button{
+  border:1px solid var(--line);
+  color:#fff;
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(18px);
+  border-radius:100px;
+  padding:12px 24px;
+  font:600 13px "DM Sans",sans-serif;
+  cursor:pointer;
+  transition:.25s ease;
+}
+button:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+#next{
+  background:#fff;color:#111;border-color:#fff;
+  min-width:125px;
+}
+#next:hover{box-shadow:0 10px 35px rgba(255,255,255,.15)}
+#back{padding:12px 17px}
+
+@media(max-width:600px){
+  #tag{top:18px;left:17px;font-size:10px}
+  #music{top:12px;right:12px}
+  #music label{display:none}
+  .scene{padding:65px 18px 95px}
+  .wall{gap:9px}
+  .wall .cap{font-size:10px}
+  .letter{width:min(290px,76vw)}
+}
+@media(max-height:560px){
+  .scene{padding:55px 20px 75px}
+  .letter{width:210px;margin-bottom:15px}
+  .big{font-size:42px}
+  .mid{margin-top:12px;font-size:15px}
+  .nav{bottom:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition-duration:.01s!important}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div><div id="fx"></div><div id="tag"></div>
+<div id="music"><button id="mb" aria-label="Toggle music">🎵 Music off</button><label title="Use your own song">Durga<input type="file" id="mf" accept="audio/*" hidden></label></div>
+<main id="stage"></main>
+<div class="nav"><button id="back" hidden>←</button><button id="next">Open</button></div>
+
+<script>
+/* ✏️ EDIT ME ─────────────────────────────── */
+  // Change FRIEND_NAME above to her name.
+  // Keep the message friendly and respectful — this page is designed as a friendship appreciation page.
+const FRIEND_NAME = "DURGA";           // her name, or ""
+const MUSIC_FILE = "queen-friends.mp3";       // e.g. "song.mp3" to use your own song by default
+// Themes: colors + mood name + music chords (MIDI notes). Each scene picks one with th:
+const TH = [
+ {n:"warm",   c:["#7a3550","#2a1530","#120a18"],gold:"#f2b661",rose:"#ee8fa0",ch:[[57,64,69],[53,60,65],[55,62,67],[52,59,64]]},
+ {n:"golden", c:["#a8642a","#3a1c18","#160a0a"],gold:"#ffcf70",rose:"#ff9a7a",ch:[[60,67,72],[57,64,69],[53,60,65],[55,62,67]]},
+ {n:"ocean",  c:["#2a6a8a","#12233d","#070d1a"],gold:"#9fe3ff",rose:"#8fb3ff",ch:[[52,59,64],[48,55,60],[50,57,62],[47,54,59]]},
+ {n:"dusk",   c:["#6a3a9a","#22123f","#0c0718"],gold:"#e3b8ff",rose:"#ff8fc7",ch:[[55,62,67],[52,59,64],[57,64,69],[50,57,62]]},
+ {n:"forest", c:["#2f7a5a","#10281f","#060f0b"],gold:"#b6f2a0",rose:"#f2c7a0",ch:[[53,60,65],[50,57,62],[55,62,67],[48,55,60]]}
+];
+// HER PHOTOS ONLY: put her photos beside this HTML (or inside an images/ folder) and update the src values below.
+const PHOTOS = [
+  {src:"her-smile.png",cap:"Her smile, her vibe, her moment."},
+  {src:"glimpse.jpg",cap:"Just a little glimpse of the person she is."},
+  {src:"little-snapshot.jpg",cap:"A little snapshot of a very good friend."},
+  {src:"being-herself.jpg",cap:"Just her being effortlessly herself."}
+];
+/* Quotes (with authors) */
+const Q = {
+ bach:["“The bond that links your true family is not one of blood, but of respect and joy in each other's life.”","Richard Bach"],
+ howard:["“Call it clan, call it tribe, call it network, call it family: whatever you call it, whoever you are, you need one.”","Jane Howard"],
+ buch:["“We weren’t born into the same story, but somehow you became one of my favorite friends.”","Vishnu Vardhan"],
+ fishel:["“A true friend is one of the nicest things you can have, and one of the best things you can be.”","Winnie the Pooh"],
+ saline:["“Friendship is born at the moment when one person says to another: You too? I thought I was the only one.”","C. S. Lewis"],
+ haley:["“A friend is what the heart needs all the time.”","Henry Van Dyke"],
+ fox:["“There is nothing better than a friend, unless it is a friend with good vibes.”","Linda Grayson"]
+};
+/* ─────────────────────────────────────────── */
+const P = (i,g,r,th)=>({t:"m",i,g,r,th});
+const S = [
+  {t:"intro",th:0},
+  {a:"a little appreciation for a friend",b:"Some people…",s:"just make the atmosphere better.",th:0},
+  {a:"the friendship",b:"We were just<br>being friends.",th:0},
+  {b:"And somehow,",s:"A few conversations.<br>A few laughs.<br>A lot of good memories.",th:2},
+  P(0,"linear-gradient(135deg,#f0a07a,#b0507a 60%,#4a2a5e)",-3,1),
+  {a:"somewhere along the way…",b:"You became<br>one of those friends worth appreciating.",th:3},
+  {t:"pulse",a:"nothing complicated",b:"Just a genuinely<br>good friendship.",th:0},
+  P(1,"linear-gradient(135deg,#f2b661,#d9667c 55%,#3c2a5a)",3,1),
+  {q:Q.buch,th:4},
+  {a:"not because we had to",b:"Because<br>good friends are worth keeping around.",th:4},
+  {q:Q.fishel,th:3},
+  {a:"you've probably noticed",s:"The random conversations.<br><br>The silly jokes.<br><br>The unexpected laughs.<br><br>The tiny moments.",th:2},
+  P(2,"linear-gradient(135deg,#8fb3d9,#a06aa8 55%,#3a2450)",-4,2),
+  {a:"and somehow…",b:"They became<br>great friendship memories.",th:3},
+  {q:Q.saline,th:2},
+  {q:Q.bach,th:3},
+  P(3,"linear-gradient(135deg,#f6c98f,#e07a85 55%,#4d2b55)",2,1),
+  {q:Q.howard,th:1},
+  {a:"so let me say this",b:"You're not just<br>someone I know.",th:0},
+  {a:"you're someone I appreciate",b:"A genuinely<br>good friend.",th:1},
+  {q:Q.haley,th:4},
+  {a:"whatever happens",b:"Whatever life<br>gets busy with…",th:2},
+  {a:"remember this",b:"I'm glad we became friends.",th:0},
+  {q:Q.fox,th:0},
+  {a:"one last thing",b:"Some people are<br>just good to have around.",s:"You're one of those friends. 🖤",th:3},
+  {t:"wall",th:1},
+  {t:"final",th:0}
+];
+const D=S.map(x=>x.t==="intro"||x.t==="final"||x.t==="wall"?0:x.t==="m"?6500:x.q?7500:x.s&&x.s.length>40?6500:4500);
+
+const stage=document.getElementById("stage");
+const el=h=>{const s=document.createElement("section");s.className="scene";s.innerHTML=h;stage.appendChild(s);return s};
+function photo(i,g){const p=PHOTOS[i]||{};return `<div class="photo" style="--g:${g}" data-i="${i}">${p.src?`<img src="${p.src}" alt="${p.cap||""}">`:`<span>tap to add<br>a photo 📷</span>`}</div>`}
+const nodes=S.map(x=>{
+ if(x.t==="intro")return el(`<div class="box"><div class="letter"><div class="seal">❤️</div></div><div class="hand font-cinzel">a little something</div><div class="to font-elegant">This is for <b>you</b>${FRIEND_NAME?`,<br>${FRIEND_NAME}`:""}</div><div class="sub" style="margin:20px auto 0">A small collection of her best moments, friendship memories & good vibes. 🖤</div></div>`);
+ if(x.t==="m"){const p=PHOTOS[x.i]||{};return el(`<div class="pl"><div class="polaroid" style="--r:${x.r}deg"><div class="tape"></div>${photo(x.i,x.g)}<div class="cap">${p.cap||""}</div></div><div class="sub">${["Some friends simply make moments better.","The best friendship memories are usually unplanned.","A few laughs can become great friendship memories.","Good friendship doesn't need a complicated explanation."][x.i]||""}</div></div>`)}
+ if(x.t==="wall")return el(`<div class="box"><div class="hand font-cinzel">all of her, together</div><div class="sub" style="margin:8px auto 18px">Her photos only — just celebrating the friend she is. 🖤</div><div class="wall">${PHOTOS.map((p,i)=>`<div class="polaroid" style="--r:${[-3,2,3,-2][i%4]}deg"><div class="tape" style="width:50px;height:16px;top:-8px"></div>${photo(i,["#f0a07a,#b0507a","#f2b661,#d9667c","#8fb3d9,#a06aa8","#f6c98f,#e07a85"].map(c=>`linear-gradient(135deg,${c})`)[i%4])}<div class="cap">${p.cap||""}</div></div>`).join("")}</div></div>`);
+ if(x.t==="pulse")return el(`<div class="pulse"></div><div class="pulse"></div><div class="box"><div class="hand">${x.a}</div><div class="big">${x.b}</div></div>`);
+ if(x.t==="final")return el(`<div class="box"><div class="hand">and I'm glad you're my friend</div><div class="final font-elegant">Good Friend.<br><i>Great Memories.</i> 🖤</div><div class="mid">Whatever we were, whatever we became — I'm grateful for the memories and the friendship that remained.</div></div>`);
+ if(x.q)return el(`<div class="box"><div class="quote">${x.q[0]}</div><div class="qa font-cinzel">— ${x.q[1]}</div></div>`);
+ return el(`<div class="box">${x.a?`<div class="hand">${x.a}</div>`:""}${x.b?`<div class="big">${x.b}</div>`:""}${x.s?`<div class="mid">${x.s}</div>`:""}</div>`);
+});
+
+/* add photos by tapping a frame (preview; use PHOTOS[].src to make permanent) */
+stage.addEventListener("click",e=>{const ph=e.target.closest(".photo");if(!ph||ph.querySelector("img"))return;
+ const inp=document.createElement("input");inp.type="file";inp.accept="image/*";
+ inp.onchange=()=>{const f=inp.files[0];if(!f)return;const url=URL.createObjectURL(f),i=ph.dataset.i;PHOTOS[i].src=url;
+  document.querySelectorAll(`.photo[data-i="${i}"]`).forEach(p=>{p.innerHTML=`<img src="${url}" alt="">`})};inp.click();
+ e.stopPropagation()});
+
+/* fireflies */
+const fx=document.getElementById("fx");
+for(let i=0;i<36;i++){const f=document.createElement("div");f.className="fly";f.style.left=Math.random()*100+"%";f.style.animationDuration=9+Math.random()*12+"s";f.style.animationDelay=-Math.random()*15+"s";fx.appendChild(f)}
+
+/* theme: each scene's quote/mood recolors the whole UI */
+const root=document.documentElement,body=document.body;
+function theme(k){const t=TH[k];root.style.setProperty("--c1",t.c[0]);root.style.setProperty("--c2",t.c[1]);root.style.setProperty("--c3",t.c[2]);root.style.setProperty("--gold",t.gold);root.style.setProperty("--rose",t.rose);
+ document.getElementById("tag").textContent="· "+t.n+" ·";chord=0}
+
+/* music: generated ambient pads that follow the theme, or your own file */
+let ac,master,step,on=false,chord=0,cur=-1,timer,custom=null,thi=0;
+const audio=new Audio();audio.loop=true;
+const hz=n=>440*Math.pow(2,(n-69)/12);
+function pad(){const c=TH[thi].ch,notes=c[chord++%c.length],t=ac.currentTime;
+ notes.forEach((n,i)=>{const o=ac.createOscillator(),g=ac.createGain(),f=ac.createBiquadFilter();o.type=i?"sine":"triangle";o.frequency.value=hz(n);o.detune.value=(Math.random()-.5)*10;f.type="lowpass";f.frequency.value=1000;
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.15,t+2);g.gain.linearRampToValueAtTime(0,t+6.5);o.connect(f);f.connect(g);g.connect(master);o.start(t);o.stop(t+7)})}
+const mb=document.getElementById("mb");
+function musicOn(){on=true;mb.textContent="🎵 Music on";
+ if(custom||MUSIC_FILE){audio.src=custom||MUSIC_FILE;audio.play()}
+ else{if(!ac){ac=new (window.AudioContext||window.webkitAudioContext)();master=ac.createGain();master.gain.value=.7;master.connect(ac.destination)}ac.resume();pad();step=setInterval(pad,5000)}}
+function musicOff(){on=false;mb.textContent="🎵 Music off";audio.pause();clearInterval(step)}
+mb.onclick=()=>on?musicOff():musicOn();
+document.getElementById("mf").onchange=e=>{const f=e.target.files[0];if(!f)return;custom=URL.createObjectURL(f);if(on)musicOff();musicOn()};
+
+/* navigation */
+const next=document.getElementById("next"),back=document.getElementById("back"),prog=document.getElementById("prog");
+function go(i){i=Math.max(0,Math.min(S.length-1,i));
+ nodes.forEach((n,k)=>n.classList.toggle("on",k===i));
+ if(S[i].th!==thi||cur<0){thi=S[i].th;theme(thi)}
+ if(cur===0&&i===1&&!on)musicOn(); // first tap on "Open" starts the music
+ cur=i;prog.style.width=i/(S.length-1)*100+"%";back.hidden=i===0;next.hidden=i===S.length-1;next.textContent=i===0?"Open":"Continue";
+ clearTimeout(timer);if(i>0&&D[i])timer=setTimeout(()=>go(cur+1),D[i])}
+next.onclick=()=>go(cur+1);back.onclick=()=>go(cur-1);
+document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.key===" "){e.preventDefault();go(cur+1)}if(e.key==="ArrowLeft")go(cur-1)});
+let tx=null;document.addEventListener("touchstart",e=>{tx=e.touches[0].clientX},{passive:true});
+document.addEventListener("touchend",e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(d)>50)go(cur+(d<0?1:-1))},{passive:true});
+go(0);
+</script>
+</body>
+</html>
